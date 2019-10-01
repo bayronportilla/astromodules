@@ -17,6 +17,7 @@
 #
 ############################################################
 
+
 def T_dust_surface(r):
 
     ############################################################
@@ -33,8 +34,9 @@ def T_dust_surface(r):
         else:
             value=550.0*r**(-2./5) 
             return value
-    except:
+    except ValueError:
         return('r outside Chiang-Goldreich model')
+
 
 def T_interior(r):   
 
@@ -60,6 +62,7 @@ def T_interior(r):
             return value
     except ValueError:
         return('r outside Chiang-Goldreich model')
+
 
 def h_p(r):
 
