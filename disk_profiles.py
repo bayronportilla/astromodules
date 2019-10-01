@@ -11,36 +11,50 @@ import matplotlib.pyplot as plt
 import sys
 from astropy import constants as cte
 
-kb=1.38e-23
-mh=1.67e-27
-mu=2.3
-M=0.8*1.989e30
-G=6.67e-11
-
-class chiang_goldreich:
+class Chiang_Goldreich:
     def __init__(self,r):
         self.r=r
-    def T_dust_surface(r):
-        value=550.0*r**(-2./5) # (K)
-        return value
-    def T_interior(self):
+    def T_dust_surface(self):
         try:
-            if 270.0<r<0.4:
-                raise ValueError('outside limits')
-            if 0.4<=r<84.0:
-                value=150.0*r**(-3./7)
-                return value
-            elif 84<=r<209.0:
-                value=21.0
-                return value
-            elif 209.0<=r<=270.0:
-                value=200.0*r**(-19./45)
+            if self.r>270.0 or self.r<0.4:
+                raise ValueError
+            else:
+                value=550.0*self.r**(-2./5) 
                 return value
         except ValueError:
-            print ("nop")
-        
-def asd():
-    return 0
+            print('r is outside the limits of Chiang-Goldreich model')
+    def T_interior(self):
+        try:
+            if self.r>270.0 or self.r<0.4:
+                raise ValueError
+            elif 0.4<=self.r<84.0:
+                value=150.0*self.r**(-3./7)
+                return value
+            elif 84<=self.r<209.0:
+                value=21.0
+                return value
+            elif 209.0<=self.r<=270.0:
+                value=200.0*self.r**(-19./45)
+                return value
+        except ValueError:
+            print('r is outside the limits of Chiang-Goldreich model') 
+    def h_scale(self):
+        try:
+            if self.r>270.0 or self.r<0.4:
+                raise ValueError
+            elif 0.4<=self.r<84.0:
+                value=0.17*self.r**(2./7)*r
+                return value
+            elif 84<=self.r<209.0:
+                value=0.064*r**0.5*r
+                return value
+            elif 209.0<=self.r<=270.0:
+                value=0.2*self.r**(13./45)*r
+                return value
+        except ValueError:
+            print('r is outside the limits of Chiang-Goldreich model') 
+    
+"""
 sys.exit()
 def T(r):
     if 0.4<=r<=84:
@@ -74,3 +88,4 @@ for i in d:
 plt.plot(d,h_array)
 plt.show()
 
+"""
