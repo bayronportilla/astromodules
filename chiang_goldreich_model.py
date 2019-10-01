@@ -1,4 +1,32 @@
+############################################################
+#
+# The Chiang-Goldreich model.
+# Based enterily on:
+# The Astrophysical Journal, Volume 490, Issue 1, pp. 368-376
+#
+# The following modules are only a first approximation to 
+# the quantities computed. In fact, these analytical relations 
+# are only valid inside a narrow zone of the parameter space.
+# In particular, they were derived for a disk surronding a 
+# 0.5 solar mass star with a radius 2.5 that of the sun. 
+# Also the effective temperature of the central star was 
+# considered equal to 4000 K. The surface density of the 
+# disk scales as r^-1.5. 
+#
+# @bayronportilla-2019
+#
+############################################################
+
 def T_dust_surface(r):
+
+    ############################################################
+    #
+    # Dust temperature in the disk surface. The input is the
+    # distance to the central star in AU and the output is the 
+    # temperature in K.
+    #
+    ############################################################
+
     try:
         if r>270.0 or r<0.4:
             raise ValueError
@@ -9,6 +37,15 @@ def T_dust_surface(r):
         return('r outside Chiang-Goldreich model')
 
 def T_interior(r):   
+
+    ############################################################
+    #
+    # Temperature of the disk midplane. The input is the
+    # distance to the central star in AU and the output is the 
+    # temperature in K.
+    #
+    ############################################################
+
     try:
         if r>270.0 or r<0.4:
             raise ValueError
@@ -24,7 +61,16 @@ def T_interior(r):
     except ValueError:
         return('r outside Chiang-Goldreich model')
 
-def h_scale(r):
+def h_p(r):
+
+    ############################################################
+    #
+    # Height of the visible photosphere. The input is the
+    # distance to the central star in AU and the output is the 
+    # AU.
+    #
+    ############################################################
+
     try:
         if r>270.0 or r<0.4:
             raise ValueError
