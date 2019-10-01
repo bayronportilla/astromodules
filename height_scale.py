@@ -17,8 +17,13 @@ def h_scale(m_s,r):
     # r: radial distance (star at origin) in AU
     # output: height scale in AU
     ############################################################
-
-    c_s=(cte.k_B.value*T_interior(r)/(2.3*cte.m_p.value))**0.5 # Sound speed
-    W=(cte.G.value*m_s*cte.M_sun.value/(r*cte.au.value)**3)**0.5 # Angular frequency
-    value=(c_s/W)/cte.au.value
-    return value    
+    try:
+        if r>270.0 or r<0.4:
+            raise ValueError
+        else:
+            c_s=(cte.k_B.value*T_interior(r)/(2.3*cte.m_p.value))**0.5 # Sound speed
+            W=(cte.G.value*m_s*cte.M_sun.value/(r*cte.au.value)**3)**0.5 # Angular frequency
+            value=(c_s/W)/cte.au.value
+            return value    
+    except ValueError:
+        return('r outside Chiang-Goldreich model')
