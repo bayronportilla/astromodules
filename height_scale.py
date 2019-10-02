@@ -17,6 +17,7 @@ def h_scale(m_s,r):
     # r: radial distance (star at origin) in AU
     # output: height scale in AU
     ############################################################
+
     try:
         if r>270.0 or r<0.4:
             raise ValueError
